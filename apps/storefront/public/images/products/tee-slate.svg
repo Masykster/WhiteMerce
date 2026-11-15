@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#EAE9E4"/>
+  <path d="M250 230L330 190C360 220 440 220 470 190L550 230L645 340L575 415L535 370V790H265V370L225 415L155 340L250 230Z" fill="#44474A" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M330 190C360 235 440 235 470 190" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#52525B">ALABASTER HEAVYWEIGHT TEE · SLATE</text>
+</svg>

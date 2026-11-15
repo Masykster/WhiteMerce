@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { CartClearOnSuccess } from "@/components/islands/CartClearOnSuccess";
+import { createServerApiClient } from "@/lib/api";
+import { formatOrderAmount } from "@whitemerce/shared/money";
+import type { OrderDto } from "@whitemerce/shared/types";
+
+const sessionId = Astro.url.searchParams.get("session_id") ?? undefined;
+const orderNumber = Astro.url.searchParams.get("orderNumber") ?? undefined;
+const email = Astro.url.searchParams.get("email") ?? undefined;
+
+let order: OrderDto | null = null;
+if (sessionId || (orderNumber && email)) {
+  try {
+    const res = await createServerApiClient().lookupOrder({
+      sessionId,
+      orderNumber,
+      email,
+    });
+    order = res.order;
+  } catch {
+    order = null;
+  }
+}
+
+const isPaid = order?.paymentStatus === "paid";
+---
+
+<BaseLayout title="Order Confirmation — WhiteMerce">
+  <CartClearOnSuccess client:load shouldClear={Boolean(isPaid)} />
+
+  <div class="mx-auto max-w-2xl px-5 py-16 sm:px-8">
+    <div class="rounded-2xl border border-stone-200 bg-white p-8 shadow-sm">
+      {order ? (
+        <div>
+          <span class="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+            Payment {order.paymentStatus} · Order {order.status}
+          </span>
+          <h1 class="mt-4 text-3xl font-semibold tracking-tight text-stone-950">
+            Thank you, {order.customerName}
+          </h1>
+          <p class="mt-2 text-sm text-stone-600">
+            Order <span class="font-mono font-semibold">{order.orderNumber}</span>{" "}
+            has been recorded and confirmation details belong to{" "}
+            <span class="font-medium">{order.customerEmail}</span>.
+          </p>
+
+          <ul class="mt-6 divide-y divide-stone-100 border-t border-b border-stone-200 py-2">
+            {order.items.map((item) => (
+              <li class="flex items-center justify-between py-3 text-sm">
+                <div>
+                  <p class="font-medium text-stone-950">{item.productName}</p>
+                  <p class="text-xs text-stone-500">
+                    {item.variantName} × {item.quantity}
+                  </p>
+                </div>
+                <span class="font-medium">
+                  {formatOrderAmount(item.lineTotalAmount, order.currency)}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-4 flex items-center justify-between text-base font-semibold text-stone-950">
+            <span>Total Paid ({order.currency})</span>
+            <span>{formatOrderAmount(order.totalAmount, order.currency)}</span>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="/products"
+              class="rounded-full bg-stone-950 px-6 py-3 text-sm font-medium text-white hover:bg-stone-800"
+            >
+              Continue Shopping
+            </a>
+            <a
+              href="/orders/lookup"
+              class="rounded-full border border-stone-300 px-6 py-3 text-sm font-medium text-stone-900 hover:bg-stone-100"
+            >
+              Track Order Status
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <h1 class="text-2xl font-semibold text-stone-950">
+            Processing Confirmation
+          </h1>
+          <p class="mt-2 text-sm text-stone-600">
+            We could not immediately locate the order confirmation. You can look it
+            up anytime using your order number and email address.
+          </p>
+          <a
+            href="/orders/lookup"
+            class="mt-6 inline-block rounded-full bg-stone-950 px-6 py-3 text-sm font-medium text-white"
+          >
+            Go to Order Lookup
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build & Cache outputs
+.turbo/
+.next/
+.astro/
+dist/
+out/
+coverage/
+.wrangler/
+next-env.d.ts
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.log

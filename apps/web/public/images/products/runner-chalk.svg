@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F2F1EC"/>
+  <path d="M160 610C160 520 220 420 285 385L350 470C390 485 450 460 490 430L625 565C660 600 665 650 615 670H175C155 670 155 640 160 610Z" fill="#FAFAF8" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="155" y="670" width="490" height="44" rx="14" fill="#E6E4DC" stroke="#18181B" stroke-width="4"/>
+  <path d="M350 470L455 540" stroke="#18181B" stroke-width="3" stroke-linecap="round"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">CHALK COURT RUNNER · CALFSKIN</text>
+</svg>

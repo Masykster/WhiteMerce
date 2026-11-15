@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export const prerender = true;
+---
+
+<BaseLayout title="Studio — WhiteMerce">
+  <div class="mx-auto max-w-3xl space-y-6 px-5 py-16 sm:px-8">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+      Architecture &amp; Design Ethos
+    </p>
+    <h1 class="text-4xl font-semibold tracking-tight text-stone-950">
+      Built for Speed at the Edge
+    </h1>
+    <p class="text-base leading-relaxed text-stone-600">
+      WhiteMerce pairs an Astro 7 islands-first storefront deployed on Cloudflare
+      Workers with a Next.js 16 fullstack backend and PostgreSQL 18 core.
+      Every product page streams clean HTML with minimal JavaScript hydration,
+      activating React 19 islands strictly where state is needed.
+    </p>
+    <div class="grid gap-4 pt-4 sm:grid-cols-2">
+      <div class="rounded-2xl border border-stone-200 bg-white p-6">
+        <h2 class="text-sm font-semibold text-stone-950">Storefront Layer</h2>
+        <p class="mt-2 text-xs leading-relaxed text-stone-600">
+          Astro 7, React 19 Islands, Tailwind CSS v4, Nanostores cart &amp;
+          multi-currency state (USD default ↔ IDR), and React Hook Form + Zod.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-stone-200 bg-white p-6">
+        <h2 class="text-sm font-semibold text-stone-950">Backend &amp; Admin</h2>
+        <p class="mt-2 text-xs leading-relaxed text-stone-600">
+          Next.js 16 App Router, Drizzle ORM on PostgreSQL 18, NextAuth v5
+          authentication, Stripe &amp; Dev checkout webhooks, and Zustand UI.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

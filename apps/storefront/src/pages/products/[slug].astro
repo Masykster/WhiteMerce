@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { AddToCartPanel } from "@/components/islands/AddToCartPanel";
+import {
+  createServerApiClient,
+  getCurrencyFromCookies,
+  getUsdToIdrRate,
+} from "@/lib/api";
+import type { ProductDto } from "@whitemerce/shared/types";
+
+const initialCurrency = getCurrencyFromCookies(Astro.cookies);
+const idrRate = getUsdToIdrRate();
+const slug = Astro.params.slug ?? "";
+
+let product: ProductDto | null = null;
+try {
+  const res = await createServerApiClient().getProductBySlug(slug);
+  product = res.product;
+} catch {
+  product = null;
+}
+
+if (!product) {
+  Astro.response.status = 404;
+}
+---
+
+<BaseLayout
+  title={product ? `${product.name} — WhiteMerce` : "Product Not Found — WhiteMerce"}
+  description={product?.description}
+>
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+    {!product ? (
+      <div class="rounded-2xl border border-stone-200 bg-white p-12 text-center">
+        <h1 class="text-2xl font-semibold text-stone-950">Product not found</h1>
+        <p class="mt-2 text-sm text-stone-500">
+          This item may have been archived or removed.
+        </p>
+        <a
+          href="/products"
+          class="mt-6 inline-block rounded-full bg-stone-950 px-6 py-3 text-sm font-medium text-white"
+        >
+          Back to Catalog
+        </a>
+      </div>
+    ) : (
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="space-y-4 lg:col-span-7">
+          {product.images.map((imageUrl, idx) => (
+            <div class="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+              <img
+                src={imageUrl}
+                alt={`${product.name} view ${idx + 1}`}
+                class="w-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="sticky top-24 space-y-6 rounded-2xl border border-stone-200 bg-white p-7">
+            <div>
+              {product.categoryName && (
+                <a
+                  href={`/products?category=${product.categorySlug ?? ""}`}
+                  class="text-xs font-medium uppercase tracking-[0.18em] text-stone-500 hover:text-stone-950"
+                >
+                  {product.categoryName}
+                </a>
+              )}
+              <h1 class="mt-2 text-3xl font-semibold tracking-tight text-stone-950">
+                {product.name}
+              </h1>
+              <p class="mt-4 text-sm leading-relaxed text-stone-600">
+                {product.description}
+              </p>
+            </div>
+
+            <AddToCartPanel
+              client:load
+              product={product}
+              initialCurrency={initialCurrency}
+              idrRate={idrRate}
+            />
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</BaseLayout>

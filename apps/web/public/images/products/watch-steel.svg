@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#ECECE9"/>
+  <rect x="340" y="150" width="120" height="185" rx="8" fill="#D4D4D8" stroke="#18181B" stroke-width="4"/>
+  <rect x="340" y="665" width="120" height="185" rx="8" fill="#D4D4D8" stroke="#18181B" stroke-width="4"/>
+  <circle cx="400" cy="500" r="170" fill="#E4E4E7" stroke="#18181B" stroke-width="5"/>
+  <circle cx="400" cy="500" r="140" fill="#FAF9F6" stroke="#18181B" stroke-width="3"/>
+  <line x1="400" y1="500" x2="400" y2="395" stroke="#18181B" stroke-width="5" stroke-linecap="round"/>
+  <line x1="400" y1="500" x2="475" y2="545" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="400" cy="500" r="8" fill="#18181B"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">BRUSHED STEEL CHRONO · 38MM</text>
+</svg>

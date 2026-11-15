@@ -1,0 +1,45 @@
+{
+  "name": "whitemerce",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:bun": "bun run --parallel --filter \"@whitemerce/*\" --if-present dev:bun",
+    "build": "turbo build",
+    "build:bun": "bun run --filter \"@whitemerce/*\" build:bun",
+    "start:bun": "bun run --parallel --filter \"@whitemerce/*\" --if-present start:bun",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "test:bun": "bun run --filter \"@whitemerce/*\" test:bun",
+    "db:push": "pnpm --filter @whitemerce/web db:push",
+    "db:push:bun": "bun run --filter @whitemerce/web db:push:bun",
+    "db:generate": "pnpm --filter @whitemerce/web db:generate",
+    "db:generate:bun": "bun run --filter @whitemerce/web db:generate:bun",
+    "db:seed": "pnpm --filter @whitemerce/web db:seed",
+    "db:seed:bun": "bun run --filter @whitemerce/web db:seed:bun",
+    "db:studio": "pnpm --filter @whitemerce/web db:studio",
+    "db:studio:bun": "bun run --filter @whitemerce/web db:studio:bun",
+    "db:docker:up": "docker compose up -d postgres",
+    "db:docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "turbo": "^2.11.11",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "workerd",
+      "sharp"
+    ]
+  }
+}

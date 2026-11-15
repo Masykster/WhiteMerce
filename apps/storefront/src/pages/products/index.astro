@@ -1,0 +1,118 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import { ProductFilterBar } from "@/components/islands/ProductFilterBar";
+import {
+  createServerApiClient,
+  getCurrencyFromCookies,
+  getUsdToIdrRate,
+} from "@/lib/api";
+import type { CategoryDto, PaginatedProductsDto } from "@whitemerce/shared/types";
+
+const initialCurrency = getCurrencyFromCookies(Astro.cookies);
+const idrRate = getUsdToIdrRate();
+
+const q = Astro.url.searchParams.get("q") ?? "";
+const category = Astro.url.searchParams.get("category") ?? "";
+const sortParam = Astro.url.searchParams.get("sort") ?? "newest";
+const sort = (
+  ["newest", "price-asc", "price-desc", "name-asc"].includes(sortParam)
+    ? sortParam
+    : "newest"
+) as "newest" | "price-asc" | "price-desc" | "name-asc";
+const page = Math.max(1, Number(Astro.url.searchParams.get("page") ?? "1") || 1);
+
+let categories: CategoryDto[] = [];
+let catalog: PaginatedProductsDto = {
+  items: [],
+  total: 0,
+  page,
+  limit: 12,
+  totalPages: 0,
+};
+
+try {
+  const api = createServerApiClient();
+  const [catRes, prodRes] = await Promise.all([
+    api.listCategories(),
+    api.listProducts({
+      q: q || undefined,
+      category: category || undefined,
+      sort,
+      page,
+      limit: 12,
+    }),
+  ]);
+  categories = catRes.items;
+  catalog = prodRes;
+} catch {
+  // Handled cleanly below
+}
+---
+
+<BaseLayout title="Catalog — WhiteMerce">
+  <div class="mx-auto max-w-6xl space-y-8 px-5 py-12 sm:px-8">
+    <div>
+      <p class="text-xs font-medium uppercase tracking-[0.18em] text-stone-500">
+        WhiteMerce Collection
+      </p>
+      <h1 class="mt-1 text-3xl font-semibold tracking-tight text-stone-950">
+        All Products ({catalog.total})
+      </h1>
+    </div>
+
+    <ProductFilterBar
+      client:load
+      categories={categories}
+      initialQuery={q}
+      initialCategory={category}
+      initialSort={sort}
+    />
+
+    {catalog.items.length > 0 ? (
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {catalog.items.map((product) => (
+          <ProductCard
+            product={product}
+            initialCurrency={initialCurrency}
+            idrRate={idrRate}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="rounded-2xl border border-stone-200 bg-white p-12 text-center">
+        <p class="text-base font-medium text-stone-900">No matching products found.</p>
+        <p class="mt-1 text-xs text-stone-500">
+          Try clearing your filters or search query.
+        </p>
+        <a
+          href="/products"
+          class="mt-5 inline-block rounded-full bg-stone-950 px-5 py-2.5 text-xs font-medium text-white"
+        >
+          Reset Filters
+        </a>
+      </div>
+    )}
+
+    {catalog.totalPages > 1 && (
+      <div class="flex items-center justify-center gap-2 pt-4">
+        {Array.from({ length: catalog.totalPages }, (_, i) => i + 1).map((pageNum) => {
+          const params = new URLSearchParams(Astro.url.searchParams);
+          params.set("page", String(pageNum));
+          return (
+            <a
+              href={`/products?${params.toString()}`}
+              class={`rounded-full px-4 py-2 text-xs font-medium transition ${
+                pageNum === catalog.page
+                  ? "bg-stone-950 text-white"
+                  : "border border-stone-300 bg-white text-stone-800 hover:bg-stone-100"
+              }`}
+            >
+              {pageNum}
+            </a>
+          );
+        })}
+      </div>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,44 @@
+{
+  "name": "@whitemerce/storefront",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "dev:bun": "bun ./scripts/dev-bun.mjs",
+    "build": "astro build",
+    "build:bun": "bun ./scripts/build-bun.mjs",
+    "preview": "astro preview --port 4321",
+    "start:bun": "bun ./dist/server/entry.mjs",
+    "typecheck": "astro check && tsc --noEmit",
+    "lint": "astro check",
+    "test": "vitest run",
+    "test:bun": "bun --bun vitest run"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.4.8",
+    "@astrojs/node": "^11.1.13",
+    "@astrojs/react": "^7.1.9",
+    "@hookform/resolvers": "^7.0.6",
+    "@nanostores/react": "^2.0.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "@whitemerce/shared": "workspace:*",
+    "astro": "^7.4.12",
+    "lucide-react": "^1.73.0",
+    "nanostores": "^1.5.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.92.0",
+    "tailwindcss": "^4.3.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}

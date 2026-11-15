@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F3EFE9"/>
+  <path d="M170 620C185 520 270 435 375 435H475C575 435 640 535 645 635H170Z" fill="#DCCBB3" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="165" y="635" width="485" height="36" rx="12" fill="#3F3A34" stroke="#18181B" stroke-width="4"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">STUDIO LEATHER MULE · SAND</text>
+</svg>

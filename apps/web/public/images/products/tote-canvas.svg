@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F4F3EF"/>
+  <path d="M310 355V255C310 205 490 205 490 255V355" stroke="#18181B" stroke-width="10" stroke-linecap="round"/>
+  <rect x="210" y="355" width="380" height="435" rx="10" fill="#FAF6EE" stroke="#18181B" stroke-width="4"/>
+  <line x1="210" y1="440" x2="590" y2="440" stroke="#18181B" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">MONOLITH CANVAS TOTE · ECRU</text>
+</svg>

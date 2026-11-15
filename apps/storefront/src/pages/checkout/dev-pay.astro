@@ -1,0 +1,19 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { DevPaymentPanel } from "@/components/islands/DevPaymentPanel";
+
+const orderNumber = Astro.url.searchParams.get("orderNumber") ?? "";
+const token = Astro.url.searchParams.get("token") ?? "";
+---
+
+<BaseLayout title="Dev Payment Simulator — WhiteMerce">
+  <div class="mx-auto max-w-2xl px-5 py-16 sm:px-8">
+    {orderNumber && token ? (
+      <DevPaymentPanel client:load orderNumber={orderNumber} token={token} />
+    ) : (
+      <div class="rounded-2xl border border-red-200 bg-red-50 p-8 text-sm text-red-900">
+        Missing dev payment parameters (`orderNumber` and `token`).
+      </div>
+    )}
+  </div>
+</BaseLayout>

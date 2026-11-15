@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F1EFEA"/>
+  <path d="M315 245H485L465 360C515 415 535 505 510 620L485 780H315L290 620C265 505 285 415 335 360L315 245Z" fill="#FDFCF8" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="355" y1="365" x2="345" y2="778" stroke="#D6D3CD" stroke-width="3"/>
+  <line x1="400" y1="365" x2="400" y2="778" stroke="#D6D3CD" stroke-width="3"/>
+  <line x1="445" y1="365" x2="455" y2="778" stroke="#D6D3CD" stroke-width="3"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">FLUTED CERAMIC VESSEL · MATTE</text>
+</svg>

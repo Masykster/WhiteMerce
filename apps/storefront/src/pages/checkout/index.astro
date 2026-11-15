@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { CheckoutForm } from "@/components/islands/CheckoutForm";
+import { getCurrencyFromCookies, getUsdToIdrRate } from "@/lib/api";
+
+const initialCurrency = getCurrencyFromCookies(Astro.cookies);
+const idrRate = getUsdToIdrRate();
+---
+
+<BaseLayout title="Checkout — WhiteMerce">
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+    <div class="mb-8">
+      <p class="text-xs font-medium uppercase tracking-[0.18em] text-stone-500">
+        Secure Checkout
+      </p>
+      <h1 class="mt-1 text-3xl font-semibold tracking-tight text-stone-950">
+        Complete Your Order
+      </h1>
+    </div>
+
+    <CheckoutForm
+      client:load
+      initialCurrency={initialCurrency}
+      idrRate={idrRate}
+    />
+  </div>
+</BaseLayout>

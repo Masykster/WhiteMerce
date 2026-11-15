@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#EFEFED"/>
+  <rect x="170" y="340" width="460" height="320" rx="28" fill="#E2E2DF" stroke="#18181B" stroke-width="4"/>
+  <rect x="195" y="365" width="410" height="270" rx="18" fill="#D1D1CD" stroke="#18181B" stroke-width="3"/>
+  <line x1="470" y1="365" x2="470" y2="635" stroke="#18181B" stroke-width="3"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">ANODIZED DESK VALET TRAY</text>
+</svg>

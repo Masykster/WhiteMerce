@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#EFECE6"/>
+  <path d="M255 220L340 180L400 235L460 180L545 220L630 355L575 680L525 675L525 360V800H275V360L275 675L225 680L170 355L255 220Z" fill="#D9D3C7" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="400" y1="235" x2="400" y2="800" stroke="#18181B" stroke-width="3"/>
+  <rect x="300" y="420" width="70" height="80" fill="none" stroke="#18181B" stroke-width="3"/>
+  <rect x="430" y="420" width="70" height="80" fill="none" stroke="#18181B" stroke-width="3"/>
+  <text x="400" y="910" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" letter-spacing="4" fill="#71717A">ATELIER OVERSHIRT JACKET · STONE</text>
+</svg>
